@@ -1,4 +1,4 @@
-﻿namespace MoniChromaticTranscendencePathCalculator;
+namespace MoniChromaticTranscendencePathCalculator;
 
 enum PrismaticCore
 {
