@@ -2,7 +2,7 @@ namespace MoniChromaticTranscendencePathCalculator;
 
 static class Program
 {
-    static readonly CoreStateComparer<ChromaticStabilizerUsed, ChromaticCapacitorUsed, Depth> comparer = new();
+    static readonly CustomOrderedStructComparer<CoreState, ChromaticStabilizerUsed, int, ChromaticCapacitorUsed, int, Depth, int> comparer = new();
     static void Main()
     {
         Chroma chroma = Chroma.Red, required;
