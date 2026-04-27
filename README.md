@@ -24,7 +24,7 @@ This machine has 12 chromas. The recipe requires a specific chroma and will chan
 | Pink    | Other     |
 
 ```
-         _- Red  -_
+         .- Red  -.
     Pink            Orange
     /                 \
 Magenta               Yellow
