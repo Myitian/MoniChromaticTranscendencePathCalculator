@@ -2,7 +2,8 @@ namespace MoniChromaticTranscendencePathCalculator;
 
 static class Program
 {
-    static void Main(string[] args)
+    static readonly CoreStateComparer<ChromaticStabilizerUsed, ChromaticCapacitorUsed, Depth> comparer = new();
+    static void Main()
     {
         Chroma chroma = Chroma.Red, required;
         for (PrismaticCore core = PrismaticCore.Inert; core != PrismaticCore.Supercritical; core++)
@@ -42,5 +43,4 @@ static class Program
         Console.Out.WriteLine($"Current core: {PrismaticCore.Supercritical}");
         Console.Out.WriteLine($"Current chroma: {chroma}");
     }
-    static readonly CoreStateComparer<ChromaticStabilizerUsed, ChromaticCapacitorUsed, Depth> comparer = new();
 }

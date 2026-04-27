@@ -33,7 +33,7 @@ Stores the primary and secondary chroma values. If the current chroma differs fr
 
 ## Prismatic Core
 
-Item used in Chroma Transcendence. Each recipe produces the next Prismatic Core in sequence. Required products are Active Prismatic Cores and Supercritical Prismatic Cores.
+Item used in Chromatic Transcendence. Each recipe produces the next Prismatic Core in sequence. Required products are Active Prismatic Cores and Supercritical Prismatic Cores.
 
 | Order | Name          | Required Chroma | Next Chroma |
 | ----- | ------------- | --------------- | ----------- |

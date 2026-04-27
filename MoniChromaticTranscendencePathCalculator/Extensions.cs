@@ -4,15 +4,15 @@ static class Extensions
 {
     extension(Chroma chroma)
     {
-        public Chroma Add(int right)
+        public Chroma Add(int offset)
         {
-            right %= (int)Chroma.MaxValue;
-            return (Chroma)(((int)chroma + right + (int)Chroma.MaxValue) % (int)Chroma.MaxValue);
+            offset %= (int)Chroma.MaxValue;
+            return (Chroma)(((int)chroma + offset + (int)Chroma.MaxValue) % (int)Chroma.MaxValue);
         }
-        public Chroma Subtract(int right)
+        public Chroma Subtract(int offset)
         {
-            right %= (int)Chroma.MaxValue;
-            return (Chroma)(((int)chroma - right + (int)Chroma.MaxValue) % (int)Chroma.MaxValue);
+            offset %= (int)Chroma.MaxValue;
+            return (Chroma)(((int)chroma - offset + (int)Chroma.MaxValue) % (int)Chroma.MaxValue);
         }
     }
     extension(ChromaticOperation operation)
