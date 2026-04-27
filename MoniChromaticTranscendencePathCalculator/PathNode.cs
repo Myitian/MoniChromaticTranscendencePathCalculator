@@ -1,5 +1,3 @@
-using System.Collections.Frozen;
-
 namespace MoniChromaticTranscendencePathCalculator;
 
 sealed class PathNode(Chroma chroma, ChromaticOperation operation = ChromaticOperation.None, PathNode? previous = null)
