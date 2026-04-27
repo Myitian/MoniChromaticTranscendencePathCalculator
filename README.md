@@ -23,6 +23,20 @@ This machine has 12 chromas. The recipe requires a specific chroma and will chan
 | Magenta | Secondary |
 | Pink    | Other     |
 
+```
+         _- Red  -_
+    Pink            Orange
+    /                 \
+Magenta               Yellow
+  |                     |
+Indigo                Lime
+  |                     |
+Blue                  Green
+    \                 /
+    Azure           Teal
+         '- Cyan -'
+```
+
 ## Chromatic Stabilizer
 
 If the current chroma is a primary chroma, subtract 2 units. If the current chroma is a secondary chroma, add 2 units. Otherwise, change the current chroma to the nearest primary chroma.
