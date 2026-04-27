@@ -2,20 +2,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MoniChromaticTranscendencePathCalculator;
 
-struct CoreState(Chroma chroma, ChromaticCapacitor capacitors = ChromaticCapacitor.None) : IEquatable<CoreState>
+struct CoreState(Chroma chroma, ChromaticCapacitor capacitors = ChromaticCapacitor.None)
 {
     public Chroma Chroma = chroma;
     public int Depth;
     public int ChromaticStabilizerUsed;
     public int ChromaticCapacitorUsed;
     public ChromaticCapacitor Capacitors = capacitors;
-
-    public readonly bool Equals(CoreState other)
-        => Capacitors == other.Capacitors;
-    public override readonly bool Equals([NotNullWhen(true)] object? obj)
-        => obj is CoreState other && Equals(other);
-    public override readonly int GetHashCode()
-        => (int)Capacitors;
 }
 struct Depth : IGetter<CoreState, int>
 {

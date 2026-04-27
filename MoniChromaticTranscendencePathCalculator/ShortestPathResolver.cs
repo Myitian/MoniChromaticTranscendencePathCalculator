@@ -8,7 +8,7 @@ static class ShortestPathResolver
         ChromaticCapacitor initialCapacitors = ChromaticCapacitor.None)
     {
         ChromaDictionary<State> best = GenerateBestDictionary();
-        ChromaDictionary<HashSet<CoreState>> visited = GenerateVisitedDictionary();
+        ChromaDictionary<HashSet<ChromaticCapacitor>> visited = GenerateVisitedDictionary();
 
         Queue<State> queue = [];
         queue.Enqueue(new()
@@ -20,8 +20,8 @@ static class ShortestPathResolver
         {
             State state = queue.Dequeue();
 
-            HashSet<CoreState> variableState = visited[state.Core.Chroma];
-            if (!variableState.Add(state.Core))
+            HashSet<ChromaticCapacitor> variableState = visited[state.Core.Chroma];
+            if (!variableState.Add(state.Core.Capacitors))
                 continue;
             if (comparer.Compare(state.Core, best[state.Core.Chroma].Core) < 0)
                 best[state.Core.Chroma] = state;
@@ -61,9 +61,9 @@ static class ShortestPathResolver
         }
         return dict;
     }
-    static ChromaDictionary<HashSet<CoreState>> GenerateVisitedDictionary()
+    static ChromaDictionary<HashSet<ChromaticCapacitor>> GenerateVisitedDictionary()
     {
-        ChromaDictionary<HashSet<CoreState>> dict = new();
+        ChromaDictionary<HashSet<ChromaticCapacitor>> dict = new();
         for (Chroma i = 0; i < Chroma.MaxValue; i++)
             dict[i] = [];
         return dict;
