@@ -1,6 +1,6 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-static class Extensions
+public static class Extensions
 {
     extension(Chroma chroma)
     {

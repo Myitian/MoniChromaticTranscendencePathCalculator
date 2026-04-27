@@ -1,6 +1,6 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-enum ChromaticOperation
+public enum ChromaticOperation
 {
     None,
     ChromaticStabilizer,

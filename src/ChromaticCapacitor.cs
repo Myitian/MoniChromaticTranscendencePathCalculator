@@ -1,7 +1,7 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
 [Flags]
-enum ChromaticCapacitor
+public enum ChromaticCapacitor
 {
     None,
     Red = 0b000001,

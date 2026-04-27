@@ -1,18 +1,18 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-enum PrismaticCore
+public enum Chroma
 {
-    Inert,
     Red,
-    Yellow,
-    Green,
-    Cyan,
-    Blue,
-    Active,
     Orange,
+    Yellow,
     Lime,
+    Green,
     Teal,
+    Cyan,
     Azure,
+    Blue,
     Indigo,
-    Supercritical
+    Magenta,
+    Pink,
+    MaxValue
 }

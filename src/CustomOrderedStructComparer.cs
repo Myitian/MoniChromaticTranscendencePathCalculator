@@ -1,6 +1,6 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-sealed class CustomOrderedStructComparer<T, P1, V1, P2, V2, P3, V3> : IComparer<T>
+public sealed class CustomOrderedStructComparer<T, P1, V1, P2, V2, P3, V3> : IComparer<T>
     where T : struct
     where P1 : IGetter<T, V1>
     where V1 : IComparable<V1>

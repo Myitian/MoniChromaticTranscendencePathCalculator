@@ -1,6 +1,6 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-sealed class PathNode(Chroma chroma, ChromaticOperation operation = ChromaticOperation.None, PathNode? previous = null)
+public sealed class PathNode(Chroma chroma, ChromaticOperation operation = ChromaticOperation.None, PathNode? previous = null)
 {
     public Chroma Chroma { get; } = chroma;
     public ChromaticOperation Operation { get; } = operation;

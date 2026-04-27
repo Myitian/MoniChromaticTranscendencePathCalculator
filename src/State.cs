@@ -1,9 +1,9 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-struct State
+public struct State
 {
+    public PathNode? Path;
     public Chroma Chroma;
     public ChromaticCapacitor Capacitors;
-    public CoreState Core;
-    public PathNode? Path;
+    public Cost Core;
 }

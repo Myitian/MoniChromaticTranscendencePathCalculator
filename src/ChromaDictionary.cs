@@ -1,6 +1,6 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-struct ChromaDictionary<T>
+public struct ChromaDictionary<T>
 {
     private ChromaArray<T> values;
     public readonly ChromaArray<T> Values => values;
