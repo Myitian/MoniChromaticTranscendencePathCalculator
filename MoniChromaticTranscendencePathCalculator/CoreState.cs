@@ -2,13 +2,11 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MoniChromaticTranscendencePathCalculator;
 
-struct CoreState(Chroma chroma, ChromaticCapacitor capacitors = ChromaticCapacitor.None)
+struct CoreState
 {
-    public Chroma Chroma = chroma;
     public int Depth;
     public int ChromaticStabilizerUsed;
     public int ChromaticCapacitorUsed;
-    public ChromaticCapacitor Capacitors = capacitors;
 }
 struct Depth : IGetter<CoreState, int>
 {
