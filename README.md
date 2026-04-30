@@ -41,9 +41,13 @@ Blue                  Green
 
 If the current chroma is a primary chroma, subtract 2 units. If the current chroma is a secondary chroma, add 2 units. Otherwise, change the current chroma to the nearest primary chroma.
 
+Consumed upon use.
+
 ## Chromatic Capacitor
 
 Stores the primary and secondary chroma values. If the current chroma differs from the chroma value in the provided capacitor by 2 units, shift the current chroma 1 unit towards the chroma value in the capacitor.
+
+Upon use, it returns an empty Chroma Capacitor; therefore, when paired with an appropriate recharging scheme, its operational cost is virtually zero.
 
 ## Prismatic Core
 
