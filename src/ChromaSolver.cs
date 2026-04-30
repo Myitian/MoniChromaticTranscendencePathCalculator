@@ -1,29 +1,23 @@
 namespace MoniChromaticTranscendencePathCalculator;
 
-public static class ShortestPathResolver
+public static class ChromaSolver
 {
-    public static void Resolve(
-        IComparer<Cost> comparer,
-        out ChromaDictionary<State> result,
+    public static void FindBestPath(
+        out ChromaArray<State> result,
         Chroma initialChroma = Chroma.Red,
         ChromaticCapacitor initialCapacitors = ChromaticCapacitor.None)
     {
         result = new();
-        ChromaDictionary<HashSet<ChromaticCapacitor>> visited = new();
+        ChromaArray<HashSet<ChromaticCapacitor>> visited = new();
         for (Chroma i = 0; i < Chroma.MaxValue; i++)
         {
-            result[i] = new()
+            result[(int)i] = new()
             {
                 Chroma = i,
                 Capacitors = ChromaticCapacitor.FromChroma(i),
-                Core = new()
-                {
-                    ChromaticStabilizerUsed = int.MaxValue,
-                    ChromaticCapacitorUsed = int.MaxValue,
-                    Depth = int.MaxValue
-                }
+                Cost = Cost.MaxValue,
             };
-            visited[i] = [];
+            visited[(int)i] = [];
         }
 
         Queue<State> queue = [];
@@ -37,12 +31,11 @@ public static class ShortestPathResolver
         {
             State state = queue.Dequeue();
 
-            HashSet<ChromaticCapacitor> variableState = visited[state.Chroma];
+            HashSet<ChromaticCapacitor> variableState = visited[(int)state.Chroma];
             if (!variableState.Add(state.Capacitors))
                 continue;
-            if (comparer.Compare(state.Core, result[state.Chroma].Core) < 0)
-                result[state.Chroma] = state;
-
+            if (state.Cost < result[(int)state.Chroma].Cost)
+                result[(int)state.Chroma] = state;
             UseChromaticStabilizer(in state, out State next);
             queue.Enqueue(next);
             if (TryUseChromaticCapacitor(in state, out next, Chroma.Red))
@@ -65,18 +58,9 @@ public static class ShortestPathResolver
         state.Path = new(chroma, operation, state.Path);
         state.Chroma = chroma;
         state.Capacitors |= ChromaticCapacitor.FromChroma(chroma);
-        state.Core.Depth++;
-        switch (operation)
-        {
-            case ChromaticOperation.None:
-                break;
-            case ChromaticOperation.ChromaticStabilizer:
-                state.Core.ChromaticStabilizerUsed++;
-                break;
-            default:
-                state.Core.ChromaticCapacitorUsed++;
-                break;
-        }
+        state.Cost.Depth++;
+        if (operation is ChromaticOperation.ChromaticStabilizer)
+            state.Cost.ChromaticStabilizerUsed++;
         return state;
     }
     static void UseChromaticStabilizer(ref readonly State state, out State result)

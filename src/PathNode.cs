@@ -16,4 +16,8 @@ public sealed class PathNode(Chroma chroma, ChromaticOperation operation = Chrom
             writer.WriteLine(Chroma.ToString());
         }
     }
+    public PathNode DeepClone()
+    {
+        return new(Chroma, Operation, Previous?.DeepClone());
+    }
 }

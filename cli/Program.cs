@@ -1,44 +1,47 @@
 ﻿using MoniChromaticTranscendencePathCalculator;
 
-CustomOrderedStructComparer<Cost,
-    Cost.ChromaticStabilizerUsedGetter, int,
-    Cost.ChromaticCapacitorUsedGetter, int,
-    Cost.DepthGetter, int> comparer = new();
+Console.WriteLine($"{Chroma.Red} => {Chroma.Green}");
+PlanSolver.GetPath(Chroma.Red, Chroma.Green)?.WriteFormatted(Console.Out);
+Console.WriteLine($"{Chroma.Red} => {Chroma.Blue}");
+PlanSolver.GetPath(Chroma.Red, Chroma.Blue)?.WriteFormatted(Console.Out);
+Console.WriteLine($"{Chroma.Red} => {Chroma.Teal}");
+PlanSolver.GetPath(Chroma.Red, Chroma.Teal)?.WriteFormatted(Console.Out);
+Console.WriteLine($"{Chroma.Red} => {Chroma.Orange}");
+PlanSolver.GetPath(Chroma.Red, Chroma.Orange)?.WriteFormatted(Console.Out);
 
-Chroma chroma = Chroma.Red;
-for (PrismaticCore core = PrismaticCore.Inert; core != PrismaticCore.Supercritical; core++)
+Console.WriteLine();
+
+PrismaticCore initialCore = PrismaticCore.Active;
+Chroma[] initialChromas = new Chroma[5]; // machine count
+int[] executionPlan = new int[6]; // step count
+Cost cost = PlanSolver.FindBestExecutionPlan(initialCore, initialChromas, executionPlan);
+Console.WriteLine($"""
+    Cost: {cost}
+    Initial Chromas: {string.Join(", ", initialChromas)}
+    Execution Plan:  {string.Join(", ", executionPlan)}
+
+    """);
+Cost c2 = Cost.Zero;
+PrismaticCore core = initialCore;
+PrismaticCore final = initialCore + executionPlan.Length;
+foreach ((int id, Chroma from, Chroma to) in PlanSolver.SimulateExecutionPlan(initialCore, initialChromas, executionPlan))
 {
-    Console.Out.WriteLine($"Current core: {core}");
-    Console.Out.WriteLine($"Current chroma: {chroma}");
-    Chroma required = core.RequiredChroma();
-    if (chroma != required)
+    if (core < final)
     {
-        PathNode? path;
-        ShortestPathResolver.Resolve(comparer, out ChromaDictionary<State> result, chroma, ChromaticCapacitor.Any);
-        path = result[required].Path;
-        if (chroma != Chroma.Red)
-        {
-            ShortestPathResolver.Resolve(comparer, out ChromaDictionary<State> result2, Chroma.Red, ChromaticCapacitor.Any);
-            PathNode? path2 = result2[required].Path;
-            if (path is not null && path2 is not null && comparer.Compare(result[required].Core, result2[required].Core) > 0)
-            {
-                path = path2;
-                Console.Out.WriteLine($" **(Reset)-> Red");
-            }
-            else
-            {
-                path ??= path2;
-            }
-        }
-        if (path is null)
-        {
-            Console.Out.WriteLine($" * Unreachable *");
-            return;
-        }
-        path.WriteFormatted(Console.Out);
+        Console.WriteLine($"Core: {core}");
+        core++;
     }
-    Console.Out.WriteLine(" => Chromatic Transcendence");
-    chroma = core.NextChroma();
+    else if (core == final)
+    {
+        Console.WriteLine($"Core: {core}");
+        Console.WriteLine("==================");
+        core++;
+    }
+    Cost c = PlanSolver.GetCost(from, to);
+    c2 += c;
+    Console.WriteLine($"""
+        Machine #{id} from {from} to {to}
+         * Cost: {c} / {c2}
+        """);
+    PlanSolver.GetPath(from, to)?.WriteFormatted(Console.Out);
 }
-Console.Out.WriteLine($"Current core: {PrismaticCore.Supercritical}");
-Console.Out.WriteLine($"Current chroma: {chroma}");

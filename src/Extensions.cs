@@ -14,6 +14,25 @@ public static class Extensions
             offset %= (int)Chroma.MaxValue;
             return (Chroma)(((int)chroma - offset + (int)Chroma.MaxValue) % (int)Chroma.MaxValue);
         }
+        public int ToColor()
+        {
+            return chroma switch
+            {
+                Chroma.Red => 0xFF0000,
+                Chroma.Orange => 0xFF8000,
+                Chroma.Yellow => 0xFFFF00,
+                Chroma.Lime => 0x80FF00,
+                Chroma.Green => 0x00FF00,
+                Chroma.Teal => 0x00FF80,
+                Chroma.Cyan => 0x00FFFF,
+                Chroma.Azure => 0x0080FF,
+                Chroma.Blue => 0x0000FF,
+                Chroma.Indigo => 0x8000FF,
+                Chroma.Magenta => 0xFF00FF,
+                Chroma.Pink => 0xFF0080,
+                _ => 0,
+            };
+        }
     }
     extension(ChromaticOperation operation)
     {

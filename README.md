@@ -2,7 +2,7 @@
 
 Calculates the shortest or lowest-cost crafting path for the "Chromatic Transcendence" recipe in the Minecraft modpack [Monifactory](https://github.com/ThePansmith/Monifactory).
 
-Currently, it only supports calculating crafting paths for a single machine. If you are using multiple machines, you may find a better crafting path, but this is not currently supported and may be added in the future.
+It supports calculating crafting execution plans for single or multiple machines. However, the current solver uses a brute-force search method without pruning to find best execution plan for multiple machines. The time complexity is $O(12^n\cdot n^m)$, where $n$ is the number of machines and $m$ is the length of the execution plan.
 
 ## Chroma
 

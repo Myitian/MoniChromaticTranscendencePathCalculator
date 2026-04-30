@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="src/MoniChromaticTranscendencePathCalculator.csproj" />
-  <Project Path="cli/MoniChromaticTranscendencePathCalculator.CLI.csproj" />
   <Project Path="benchmark/MoniChromaticTranscendencePathCalculator.Benchmark.csproj" />
+  <Project Path="cli/MoniChromaticTranscendencePathCalculator.CLI.csproj" />
+  <Project Path="src/MoniChromaticTranscendencePathCalculator.csproj" />
 </Solution>
